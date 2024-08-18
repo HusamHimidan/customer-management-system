@@ -1,70 +1,119 @@
-# Getting Started with Create React App
+Customer Management System
+Overview
+The Customer Management System is a full-stack web application designed to manage customer information. The application is built using React JS for the front end, ASP.NET MVC and Web API for the back end, and SQL Server for the database. Bootstrap 5.3.3 is used for styling the front-end components. Microsoft Unit Testing is employed for testing the application.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Technologies Used
+Front End: React JS
+Back End: ASP.NET MVC and Web API
+Database: SQL Server
+Styling: Bootstrap 5.3.3
+Testing: Microsoft Unit Testing
+Setup Instructions
+Front End
+Clone the Repository
 
-## Available Scripts
+bash
+Copy code
+git clone https://github.com/yourusername/customer-management-system.git
+cd customer-management-system
+Navigate to the Front-End Directory
 
-In the project directory, you can run:
+bash
+Copy code
+cd client
+Install Dependencies
 
-### `npm start`
+Ensure you have Node.js and npm installed. Run:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+bash
+Copy code
+npm install
+Start the React Application
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+bash
+Copy code
+npm start
+The application will be available at http://localhost:3000.
 
-### `npm test`
+Back End
+Navigate to the Back-End Directory
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+bash
+Copy code
+cd ../server
+Setup the Database
 
-### `npm run build`
+Open SQL Server Management Studio.
+Create a new database for the application.
+Update the connection string in Web.config to point to your SQL Server instance.
+Build and Run the ASP.NET Application
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Open the solution in Visual Studio.
+Restore NuGet packages.
+Build the solution.
+Start the application. The API will be available at http://localhost:5000/api/customers (or your configured port).
+Testing
+Run Unit Tests
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Open the solution in Visual Studio.
+Navigate to the Test Explorer.
+Run all tests to ensure everything is functioning correctly.
+API Endpoints
+Customer Endpoints
+Get All Customers
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+URL: /api/customers
+Method: GET
+Success Response:
+Code: 200
+Content: [{ id: 1, firstName: "John", lastName: "Doe", email: "john.doe@example.com", phone: "1234567890", address: "123 Street" }, ...]
+Get Customer by ID
 
-### `npm run eject`
+URL: /api/customers/{id}
+Method: GET
+URL Params:
+id=[integer]
+Success Response:
+Code: 200
+Content: { id: 1, firstName: "John", lastName: "Doe", email: "john.doe@example.com", phone: "1234567890", address: "123 Street" }
+Error Response:
+Code: 404
+Content: { "message": "Not Found" }
+Create a New Customer
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+URL: /api/customers
+Method: POST
+Payload: { firstName: "Alice", lastName: "Smith", email: "alice.smith@example.com", phone: "1234567890", address: "789 Road" }
+Success Response:
+Code: 201
+Content: { id: 3, firstName: "Alice", lastName: "Smith", email: "alice.smith@example.com", phone: "1234567890", address: "789 Road" }
+Error Response:
+Code: 400
+Content: { "message": "Bad Request" }
+Update a Customer
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+URL: /api/customers/{id}
+Method: PUT
+URL Params:
+id=[integer]
+Payload: { firstName: "John", lastName: "Doe", email: "john.doe@example.com", phone: "1234567890", address: "123 Updated Street" }
+Success Response:
+Code: 204
+Content: None
+Error Response:
+Code: 400
+Content: { "message": "Bad Request" }
+Code: 404
+Content: { "message": "Not Found" }
+Delete a Customer
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+URL: /api/customers/{id}
+Method: DELETE
+URL Params:
+id=[integer]
+Success Response:
+Code: 200
+Content: { id: 1, firstName: "John", lastName: "Doe", email: "john.doe@example.com", phone: "1234567890", address: "123 Street" }
+Error Response:
+Code: 404
+Content: { "message": "Not Found" }
